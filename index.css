@@ -1,3 +1,47 @@
+@font-face {
+  font-family: "Cerebri-Sans-Regular";
+  src: url("Cerebri-Sans-Regular.ttf");
+}
+
 body {
-    margin: 0;
+  margin: 0;
+  background-color: #293346;
+  display: flex;
+  flex-direction: column;
+  font-family: "Cerebri-Sans-Regular";
+
+  align-items: center;
+}
+
+#gen-txt {
+  color: #f7f7ff;
+  margin-bottom: 4px;
+}
+#gen-btn {
+  background-color: #49d49d;
+  color: #f7f7ff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  margin: 20px;
+}
+#rand-txt {
+  color: #49d49d;
+  margin: 5px 4px;
+}
+#slogan-txt {
+  color: #dcd8dc;
+  margin-top: 5px;
+}
+#pwd {
+  background-color: #465a7f;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: #49d49d;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
