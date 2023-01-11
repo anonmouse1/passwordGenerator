@@ -96,7 +96,16 @@ let currentPwd = document.getElementById("pwd");
 let currentChar = "";
 let hasPwdContent = false;
 let pwdLength = document.getElementById("pwd-length");
+let dispPwdLength = document.getElementById("disp-length");
+dispPwdLength.textContent = "Password Length: " + pwdLength.value;
 
+//update the displayed password length anytime the input range value is adjusted
+pwdLength.addEventListener("click", (event) => {
+  event.preventDefault();
+  dispPwdLength.textContent = "Password Length: " + pwdLength.value;
+});
+
+//generate a password of length specified by the user
 function generatePwd() {
   currentPwd.textContent = "";
   let currentPwdLength = pwdLength.value;
