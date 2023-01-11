@@ -60,3 +60,15 @@ body {
   align-items: center;
   color: #f7f7ff;
 }
+
+.checkbox-group {
+  color: #f7f7ff;
+  margin: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group label {
+  margin-left: 15px;
+  margin-right: 8px;
+}
