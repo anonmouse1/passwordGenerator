@@ -94,13 +94,16 @@ const characters = [
 
 let currentPwd = document.getElementById("pwd");
 let currentChar = "";
+let hasPwdContent = false;
+let pwdLength = document.getElementById("pwd-length");
 
 function generatePwd() {
   currentPwd.textContent = "";
-  for (let i = 0; i < 16; i++) {
+  let currentPwdLength = pwdLength.value;
+  for (let i = 0; i < currentPwdLength; i++) {
     let randomNumber = Math.floor(Math.random() * characters.length);
     currentChar = characters[randomNumber];
-    console.log(currentChar);
     currentPwd.textContent += currentChar;
   }
+  hasPwdContent = true;
 }

@@ -11,7 +11,24 @@
       <h1 id="gen-txt">Generate a</h1>
       <h1 id="rand-txt">random password</h1>
       <h3 id="slogan-txt">Never use an insecure password again</h3>
-      <button id="gen-btn" onclick="generatePwd()">Generate Password</button>
+      <div id="pwd-fields">
+        <p>Password length:</p>
+        <input
+          id="pwd-length"
+          type="number"
+          placeholder="12-60"
+          min="12"
+          max="60"
+          value="12"
+        />
+      </div>
+
+      <button
+        id="gen-btn"
+        onclick="generatePwd() ; document.getElementById('pwd').classList.add('clicked')"
+      >
+        Generate Password
+      </button>
       <div>
         <p id="pwd"></p>
       </div>

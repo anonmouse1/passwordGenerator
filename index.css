@@ -25,6 +25,10 @@ body {
   border-radius: 5px;
   margin: 20px;
 }
+/*when button is clicked change the background color around the password so the element becomes visible*/
+#pwd.clicked {
+  background-color: #465a7f;
+}
 #rand-txt {
   color: #49d49d;
   margin: 5px 4px;
@@ -34,7 +38,7 @@ body {
   margin-top: 5px;
 }
 #pwd {
-  background-color: #465a7f;
+  background-color: #293346;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -44,4 +48,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#pwd-length {
+  width: 90px;
+}
+
+#pwd-fields {
+  display: inline;
+  color: #f7f7ff;
 }
