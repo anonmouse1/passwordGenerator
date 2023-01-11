@@ -337,6 +337,37 @@ const charactersWoLetters = [
   "?",
   "/",
 ];
+const charatersOnlySpecials = [
+  "~",
+  "`",
+  "!",
+  "@",
+  "#",
+  "$",
+  "%",
+  "^",
+  "&",
+  "*",
+  "(",
+  ")",
+  "_",
+  "-",
+  "+",
+  "=",
+  "{",
+  "[",
+  "}",
+  "]",
+  ",",
+  "|",
+  ":",
+  ";",
+  "<",
+  ">",
+  ".",
+  "?",
+  "/",
+];
 
 let currentPwd = document.getElementById("pwd");
 let currentChar = "";
@@ -344,6 +375,7 @@ let hasPwdContent = false;
 let pwdLength = document.getElementById("pwd-length");
 let dispPwdLength = document.getElementById("disp-length");
 dispPwdLength.textContent = "Password Length: " + pwdLength.value;
+let chosenArray = [];
 
 //update the displayed password length anytime the input range value is adjusted
 pwdLength.addEventListener("click", (event) => {
@@ -353,14 +385,64 @@ pwdLength.addEventListener("click", (event) => {
 
 //decided which array to use
 //if checkbox clicked etc
+function checkboxVerify() {
+  let lettersCheckbox = document.getElementById("letters-checkbox");
+  let numbersCheckbox = document.getElementById("numbers-checkbox");
+  let charactersCheckbox = document.getElementById("characters-checkbox");
+
+  if (
+    lettersCheckbox.checked &&
+    numbersCheckbox.checked &&
+    charactersCheckbox.checked
+  ) {
+    chosenArray = charactersAll;
+  } else if (
+    lettersCheckbox.checked &&
+    numbersCheckbox.checked &&
+    !charactersCheckbox.checked
+  ) {
+    chosenArray = charactersWoSpecial;
+  } else if (
+    lettersCheckbox.checked &&
+    !numbersCheckbox.checked &&
+    charactersCheckbox.checked
+  ) {
+    chosenArray = charactersWoNumbers;
+  } else if (
+    lettersCheckbox.checked &&
+    !numbersCheckbox.checked &&
+    !charactersCheckbox.checked
+  ) {
+    chosenArray = charactersBasic;
+  } else if (
+    !lettersCheckbox.checked &&
+    numbersCheckbox.checked &&
+    charactersCheckbox.checked
+  ) {
+    chosenArray = charactersWoLetters;
+  } else if (
+    lettersCheckbox.checked &&
+    numbersCheckbox.checked &&
+    !charactersCheckbox.checked
+  ) {
+    chosenArray = charatersOnlySpecials;
+  } else if (
+    !lettersCheckbox.checked &&
+    !numbersCheckbox.checked &&
+    !charactersCheckbox.checked
+  ) {
+    currentPwd.textContent = "Sir,this is a Wendy's.....";
+  }
+}
 
 //generate a password of length specified by the
 function generatePwd() {
+  checkboxVerify();
   currentPwd.textContent = "";
   let currentPwdLength = pwdLength.value;
   for (let i = 0; i < currentPwdLength; i++) {
-    let randomNumber = Math.floor(Math.random() * charactersAll.length);
-    currentChar = charactersAll[randomNumber];
+    let randomNumber = Math.floor(Math.random() * chosenArray.length);
+    currentChar = chosenArray[randomNumber];
     currentPwd.textContent += currentChar;
   }
   hasPwdContent = true;
