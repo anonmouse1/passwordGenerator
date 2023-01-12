@@ -369,6 +369,125 @@ const charatersOnlySpecials = [
   "/",
 ];
 
+const numbersOnly = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+const commonEmojis = [
+  "😀",
+  "😃",
+  "😄",
+  "😁",
+  "😆",
+  "😅",
+  "😂",
+  "🤣",
+  "😊",
+  "😇",
+  "🙂",
+  "🙃",
+  "😉",
+  "😌",
+  "😍",
+  "😘",
+  "😗",
+  "😙",
+  "😚",
+  "😋",
+  "😜",
+  "😝",
+  "😛",
+  "🤑",
+  "🤗",
+  "🤓",
+  "😎",
+  "😏",
+  "😒",
+  "😞",
+  "😔",
+  "😟",
+  "😕",
+  "🙁",
+  "☹️",
+  "😣",
+  "😖",
+  "😫",
+  "😩",
+  "😤",
+  "😠",
+  "😡",
+  "😶",
+  "😐",
+  "😑",
+  "😯",
+  "😦",
+  "😧",
+  "😮",
+  "😲",
+  "😵",
+  "😳",
+  "😱",
+  "😨",
+  "😰",
+  "😢",
+  "😥",
+  "🤤",
+  "😭",
+  "😓",
+  "😪",
+  "😴",
+  "🙄",
+  "🤔",
+  "🤥",
+  "😬",
+  "🤢",
+  "🤧",
+  "😷",
+  "🤒",
+  "🤕",
+  "😈",
+  "👿",
+  "👹",
+  "👺",
+  "💩",
+  "👻",
+  "💀",
+  "☠️",
+  "👽",
+  "👾",
+  "🤖",
+  "🎃",
+  "😺",
+  "😸",
+  "😻",
+  "😽",
+  "😼",
+  "🙀",
+  "😿",
+  "😹",
+  "😾",
+  "🙈",
+  "🙉",
+  "🙊",
+  "🐵",
+  "🐒",
+  "🦍",
+  "🦧",
+  "🐶",
+  "🐕",
+  "🦮",
+  "🐕‍🦺",
+  "🐩",
+  "🐺",
+  "🦊",
+  "🦝",
+  "🐱",
+  "🐈",
+  "🦁",
+  "🐯",
+  "🐅",
+  "🐆",
+  "🐴",
+];
+
 let currentPwd = document.getElementById("pwd");
 let currentChar = "";
 let hasPwdContent = false;
@@ -389,6 +508,15 @@ function checkboxVerify() {
   let lettersCheckbox = document.getElementById("letters-checkbox");
   let numbersCheckbox = document.getElementById("numbers-checkbox");
   let charactersCheckbox = document.getElementById("characters-checkbox");
+  let emojiCheckbox = document.getElementById("emoji-checkbox");
+  if (
+    !lettersCheckbox.checked &&
+    !numbersCheckbox.checked &&
+    !charactersCheckbox.checked &&
+    !emojiCheckbox.checked
+  ) {
+    currentPwd.textContent = "Sir,this is a Wendy's.....";
+  }
 
   if (
     lettersCheckbox.checked &&
@@ -396,6 +524,13 @@ function checkboxVerify() {
     charactersCheckbox.checked
   ) {
     chosenArray = charactersAll;
+  } else if (
+    lettersCheckbox.checked &&
+    numbersCheckbox.checked &&
+    charactersCheckbox.checked &&
+    emojiCheckbox.checked
+  ) {
+    chosenArray = charactersAll.concat(commonEmojis);
   } else if (
     lettersCheckbox.checked &&
     numbersCheckbox.checked &&
@@ -428,10 +563,10 @@ function checkboxVerify() {
     chosenArray = charatersOnlySpecials;
   } else if (
     !lettersCheckbox.checked &&
-    !numbersCheckbox.checked &&
+    numbersCheckbox.checked &&
     !charactersCheckbox.checked
   ) {
-    currentPwd.textContent = "Sir,this is a Wendy's.....";
+    chosenArray = numbersOnly;
   }
 }
 
@@ -447,3 +582,19 @@ function generatePwd() {
   }
   hasPwdContent = true;
 }
+
+//copy the content of the password to the clipboard
+
+document.getElementById("pwd").addEventListener("click", async function () {
+  var alertBox = alert("Hello, this is an alert!");
+  setTimeout(function () {
+    alertBox.close();
+  }, 100);
+  try {
+    const textToCopy = document.getElementById("pwd").innerText;
+    await navigator.clipboard.writeText(textToCopy);
+    console.log("Text copied to clipboard");
+  } catch (err) {
+    console.log("Failed to copy text: ", err);
+  }
+});

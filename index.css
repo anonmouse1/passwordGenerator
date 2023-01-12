@@ -25,7 +25,10 @@ body {
   border-radius: 5px;
   margin: 20px;
 }
-/*when button is clicked change the background color around the password so the element becomes visible*/
+#gen-btn:hover {
+  background-color: #13b172;
+}
+/*when generate button is clicked change the background color around the password so the element becomes visible*/
 #pwd.clicked {
   background-color: #465a7f;
 }
@@ -43,6 +46,9 @@ body {
   border: none;
   border-radius: 5px;
   color: #49d49d;
+}
+#pwd:hover {
+  border: 2px solid #49d49d;
 }
 .main {
   display: flex;
@@ -71,4 +77,8 @@ body {
 .checkbox-group label {
   margin-left: 15px;
   margin-right: 8px;
+}
+
+#alert {
+  color: #f7f7ff;
 }
