@@ -23,8 +23,6 @@
         <input type="checkbox" id="numbers-checkbox" checked />
         <label for="characters-checkbox">Special characters</label>
         <input type="checkbox" id="characters-checkbox" checked />
-        <label for="emoji-checkbox">Emoji</label>
-        <input type="checkbox" id="emoji-checkbox" />
       </div>
 
       <button
@@ -34,9 +32,9 @@
         Generate Password
       </button>
       <div>
-        <p id="pwd"></p>
+        <p id="pwd" onclick="showAlert()"></p>
       </div>
-      <div id="alert" style="display: none">Hello, this is an alert!</div>
+      <div id="alert" style="display: none">Password copied to clipboard</div>
     </div>
     <script src="index.js"></script>
   </body>

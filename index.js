@@ -495,6 +495,7 @@ let pwdLength = document.getElementById("pwd-length");
 let dispPwdLength = document.getElementById("disp-length");
 dispPwdLength.textContent = "Password Length: " + pwdLength.value;
 let chosenArray = [];
+let noneChecked = false;
 
 //update the displayed password length anytime the input range value is adjusted
 pwdLength.addEventListener("click", (event) => {
@@ -515,7 +516,8 @@ function checkboxVerify() {
     !charactersCheckbox.checked &&
     !emojiCheckbox.checked
   ) {
-    currentPwd.textContent = "Sir,this is a Wendy's.....";
+    noneChecked = true;
+    console.log("No boxes checked");
   }
 
   if (
@@ -524,13 +526,6 @@ function checkboxVerify() {
     charactersCheckbox.checked
   ) {
     chosenArray = charactersAll;
-  } else if (
-    lettersCheckbox.checked &&
-    numbersCheckbox.checked &&
-    charactersCheckbox.checked &&
-    emojiCheckbox.checked
-  ) {
-    chosenArray = charactersAll.concat(commonEmojis);
   } else if (
     lettersCheckbox.checked &&
     numbersCheckbox.checked &&
@@ -573,23 +568,24 @@ function checkboxVerify() {
 //generate a password of length specified by the
 function generatePwd() {
   checkboxVerify();
-  currentPwd.textContent = "";
-  let currentPwdLength = pwdLength.value;
-  for (let i = 0; i < currentPwdLength; i++) {
-    let randomNumber = Math.floor(Math.random() * chosenArray.length);
-    currentChar = chosenArray[randomNumber];
-    currentPwd.textContent += currentChar;
+  if (noneChecked === true) {
+    currentPwd.textContent = "Sir,this is a Wendy's.....";
+  } else {
+    currentPwd.textContent = "";
+    let currentPwdLength = pwdLength.value;
+    for (let i = 0; i < currentPwdLength; i++) {
+      let randomNumber = Math.floor(Math.random() * chosenArray.length);
+      currentChar = chosenArray[randomNumber];
+      currentPwd.textContent += currentChar;
+    }
+    hasPwdContent = true;
+    noneChecked = false;
   }
-  hasPwdContent = true;
 }
 
 //copy the content of the password to the clipboard
 
 document.getElementById("pwd").addEventListener("click", async function () {
-  var alertBox = alert("Hello, this is an alert!");
-  setTimeout(function () {
-    alertBox.close();
-  }, 100);
   try {
     const textToCopy = document.getElementById("pwd").innerText;
     await navigator.clipboard.writeText(textToCopy);
@@ -598,3 +594,14 @@ document.getElementById("pwd").addEventListener("click", async function () {
     console.log("Failed to copy text: ", err);
   }
 });
+
+function showAlert() {
+  var alertBox = document.getElementById("alert");
+  alertBox.style.display = "block";
+  setTimeout(function () {
+    alertBox.style.opacity = "0";
+  }, 3000);
+  setTimeout(function () {
+    alert.style.display = "none";
+  }, 6000);
+}
