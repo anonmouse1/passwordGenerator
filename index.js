@@ -371,6 +371,18 @@ const charatersOnlySpecials = [
 
 const numbersOnly = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
+/* future improvement - import arrays instead of inclusion in index.js 
+export {
+    charactersAll,
+    charactersWoNumbers,
+    charactersWoLetters,
+    charactersWoSpecial,
+    charactersBasic,
+    charatersOnlySpecials,
+    numbersOnly
+  };
+  */
+
 let currentPwd = document.getElementById("pwd");
 let currentChar = "";
 let hasPwdContent = false;
