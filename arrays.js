@@ -378,4 +378,5 @@ export {
   charactersWoSpecial,
   charactersBasic,
   charatersOnlySpecials,
+  numbersOnly,
 };
