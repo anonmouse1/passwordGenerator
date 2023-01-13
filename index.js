@@ -371,123 +371,6 @@ const charatersOnlySpecials = [
 
 const numbersOnly = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-const commonEmojis = [
-  "😀",
-  "😃",
-  "😄",
-  "😁",
-  "😆",
-  "😅",
-  "😂",
-  "🤣",
-  "😊",
-  "😇",
-  "🙂",
-  "🙃",
-  "😉",
-  "😌",
-  "😍",
-  "😘",
-  "😗",
-  "😙",
-  "😚",
-  "😋",
-  "😜",
-  "😝",
-  "😛",
-  "🤑",
-  "🤗",
-  "🤓",
-  "😎",
-  "😏",
-  "😒",
-  "😞",
-  "😔",
-  "😟",
-  "😕",
-  "🙁",
-  "☹️",
-  "😣",
-  "😖",
-  "😫",
-  "😩",
-  "😤",
-  "😠",
-  "😡",
-  "😶",
-  "😐",
-  "😑",
-  "😯",
-  "😦",
-  "😧",
-  "😮",
-  "😲",
-  "😵",
-  "😳",
-  "😱",
-  "😨",
-  "😰",
-  "😢",
-  "😥",
-  "🤤",
-  "😭",
-  "😓",
-  "😪",
-  "😴",
-  "🙄",
-  "🤔",
-  "🤥",
-  "😬",
-  "🤢",
-  "🤧",
-  "😷",
-  "🤒",
-  "🤕",
-  "😈",
-  "👿",
-  "👹",
-  "👺",
-  "💩",
-  "👻",
-  "💀",
-  "☠️",
-  "👽",
-  "👾",
-  "🤖",
-  "🎃",
-  "😺",
-  "😸",
-  "😻",
-  "😽",
-  "😼",
-  "🙀",
-  "😿",
-  "😹",
-  "😾",
-  "🙈",
-  "🙉",
-  "🙊",
-  "🐵",
-  "🐒",
-  "🦍",
-  "🦧",
-  "🐶",
-  "🐕",
-  "🦮",
-  "🐕‍🦺",
-  "🐩",
-  "🐺",
-  "🦊",
-  "🦝",
-  "🐱",
-  "🐈",
-  "🦁",
-  "🐯",
-  "🐅",
-  "🐆",
-  "🐴",
-];
-
 let currentPwd = document.getElementById("pwd");
 let currentChar = "";
 let hasPwdContent = false;
@@ -513,8 +396,7 @@ function checkboxVerify() {
   if (
     !lettersCheckbox.checked &&
     !numbersCheckbox.checked &&
-    !charactersCheckbox.checked &&
-    !emojiCheckbox.checked
+    !charactersCheckbox.checked
   ) {
     noneChecked = true;
     console.log("No boxes checked");
@@ -551,9 +433,9 @@ function checkboxVerify() {
   ) {
     chosenArray = charactersWoLetters;
   } else if (
-    lettersCheckbox.checked &&
-    numbersCheckbox.checked &&
-    !charactersCheckbox.checked
+    !lettersCheckbox.checked &&
+    !numbersCheckbox.checked &&
+    charactersCheckbox.checked
   ) {
     chosenArray = charatersOnlySpecials;
   } else if (
@@ -565,11 +447,13 @@ function checkboxVerify() {
   }
 }
 
-//generate a password of length specified by the
+//generate a password of length specified by the range input bu user
 function generatePwd() {
   checkboxVerify();
   if (noneChecked === true) {
-    currentPwd.textContent = "Sir,this is a Wendy's.....";
+    currentPwd.textContent = "Sir, this is a Wendy's.....";
+    /*reset the flag*/
+    noneChecked = false;
   } else {
     currentPwd.textContent = "";
     let currentPwdLength = pwdLength.value;
@@ -579,7 +463,6 @@ function generatePwd() {
       currentPwd.textContent += currentChar;
     }
     hasPwdContent = true;
-    noneChecked = false;
   }
 }
 
@@ -590,6 +473,7 @@ document.getElementById("pwd").addEventListener("click", async function () {
     const textToCopy = document.getElementById("pwd").innerText;
     await navigator.clipboard.writeText(textToCopy);
     console.log("Text copied to clipboard");
+    showAlert();
   } catch (err) {
     console.log("Failed to copy text: ", err);
   }
@@ -597,11 +481,13 @@ document.getElementById("pwd").addEventListener("click", async function () {
 
 function showAlert() {
   var alertBox = document.getElementById("alert");
-  alertBox.style.display = "block";
-  setTimeout(function () {
-    alertBox.style.opacity = "0";
-  }, 3000);
-  setTimeout(function () {
-    alert.style.display = "none";
-  }, 6000);
+  if (alertBox) {
+    alertBox.style.display = "block";
+    setTimeout(function () {
+      alertBox.style.opacity = "0";
+    }, 3000);
+    setTimeout(function () {
+      alertBox.style.display = "none";
+    }, 6000);
+  }
 }

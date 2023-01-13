@@ -49,6 +49,7 @@ body {
 }
 #pwd:hover {
   border: 2px solid #49d49d;
+  cursor: pointer;
 }
 .main {
   display: flex;
